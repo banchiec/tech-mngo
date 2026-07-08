@@ -1,37 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mango Frontend Technical Assessment
 
-## Getting Started
+This repository contains my solution for the Mango Frontend Technical Assessment.
 
-First, run the development server:
+The project has been developed using **Next.js 15**, **React 19**, **TypeScript**, and the **App Router**, following a reusable and scalable component-based architecture.
+
+---
+
+## Overview
+
+The goal of this technical assessment is to implement a reusable custom **Range** component capable of handling two different scenarios:
+
+- **Exercise 1:** Standard numeric range.
+- **Exercise 2:** Fixed catalog values.
+
+The solution focuses on component reusability, separation of concerns, accessibility, and maintainability.
+
+---
+
+## Features
+
+### Exercise 1
+
+- Custom range component (without using the native HTML `<input type="range">`)
+- Two draggable handles
+- Editable minimum and maximum values
+- Manual value validation
+- Boundary validation
+- Handle collision prevention
+- Mocked API endpoint
+- Server-side data loading using React `use()` and `Suspense`
+
+### Exercise 2
+
+- Fixed catalog values
+- Read-only labels
+- Two draggable handles
+- Selected catalog highlighting
+- Mocked API endpoint
+- Reuses the same `Range` component
+
+---
+
+## Tech Stack
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Jest
+- React Testing Library
+
+---
+
+## Project Structure
+
+```text
+src/
+├── app/                # Next.js routes and API handlers
+├── components/         # Reusable UI components
+├── features/           # Feature-specific views
+├── hooks/              # Custom hooks
+├── services/           # Data access layer
+├── types/              # Shared TypeScript types
+├── utils/              # Helper functions
+└── __tests__/          # Unit and integration tests
+```
+
+---
+
+## Architecture
+
+The project follows a component-based architecture with a clear separation of responsibilities:
+
+- **app** → Routing and API endpoints.
+- **features** → Feature-specific presentation logic.
+- **components** → Reusable UI components.
+- **hooks** → Business logic and state management.
+- **services** → Data retrieval.
+- **utils** → Pure utility functions.
+- **types** → Shared TypeScript definitions.
+
+The `Range` component is completely reusable and shared between both exercises.
+
+---
+
+## Testing
+
+The project includes unit and integration tests covering:
+
+- Range component rendering
+- Pointer interactions
+- Manual input editing
+- Exercise 1 integration
+- Exercise 2 integration
+
+Run the tests with:
+
+```bash
+npm test
+```
+
+---
+
+## Installation
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3000/exercise1
+- http://localhost:3000/exercise2
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev
+npm run test
+npm run lint
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Notes
 
-## Deploy on Vercel
+Some implementation decisions taken during development:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Shared reusable `Range` component for both exercises.
+- Business logic extracted into a custom hook (`useRange`).
+- Mock API endpoints to simulate backend responses.
+- React 19 `use()` with `Suspense` to consume asynchronous server data.
+- Type-safe implementation using TypeScript.
+- Accessibility considerations such as descriptive `aria-label` attributes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# tech-mngo
+---
+
+## Author
+
+**Iván Espinoza Condori**
+
+Thank you for taking the time to review my solution.
