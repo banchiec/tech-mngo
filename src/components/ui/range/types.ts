@@ -6,4 +6,5 @@ export interface RangeProps {
   onChange?: (min: number, max: number) => void;
   step?: number;
   isEditableLabels?: boolean;
+  formatLabel?: (value: number) => string | number;
 }

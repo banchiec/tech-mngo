@@ -1,4 +1,4 @@
-import { NormalRangeResponse } from "@/types/range";
+import { FixedRangeResponse, NormalRangeResponse } from "@/types/range";
 
 const API_BASE_URL = 'http://localhost:8080/api'
 
@@ -10,4 +10,14 @@ export async function getRangeData(): Promise<NormalRangeResponse> {
     return res.json();
   });
   
+}
+
+export function getExercise2Data(): Promise<FixedRangeResponse> {
+  return fetch(`${API_BASE_URL}/exercise2`, { cache: 'no-store' })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Error HTTP ${res.status}: No se pudo obtener el catálogo del Ejercicio 2.`);
+      }
+      return res.json() as Promise<FixedRangeResponse>;
+    });
 }

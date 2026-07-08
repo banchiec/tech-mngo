@@ -11,9 +11,7 @@ interface Exercise1ClientProps {
 const Exercise1View: React.FC <Exercise1ClientProps>= ({ranges} ) => {
   const data = use(ranges)
 
-  const handleRangeChange = (min: number, max: number) => {
-    console.log(`[Ejercicio 1] Cambio detectado -> Mín: ${min}, Máx: ${max}`);
-  };
+  const handleRangeChange = () => {};
 
   return (
     <div className="py-6 px-4 bg-gray-50 rounded-xl border border-gray-100">

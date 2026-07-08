@@ -38,15 +38,14 @@ export const useRange = (
       step
     );
 
-    setValues((prev) => {
-      const newValues = clampValueCollision(prev, calculatedValue, activeHandle, step);
-      
-      if ((newValues.min !== prev.min || newValues.max !== prev.max) && onChange) {
-        onChange(newValues.min, newValues.max);
+    const nextValues = clampValueCollision(values, calculatedValue, activeHandle, step);
+
+    if (nextValues.min !== values.min || nextValues.max !== values.max) {
+      setValues(nextValues);
+      if (onChange) {
+        onChange(nextValues.min, nextValues.max);
       }
-      
-      return newValues;
-    });
+    } 
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {

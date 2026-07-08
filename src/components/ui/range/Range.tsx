@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RangeProps } from './types';
-import { useRange } from '@/features/exercise1/hooks/useRange';
+import { useRange } from '@/hooks/useRange';
 
 export const Range: React.FC<RangeProps> = ({
   minLimit,
@@ -10,6 +10,7 @@ export const Range: React.FC<RangeProps> = ({
   onChange,
   step = 1,
   isEditableLabels = true,
+  formatLabel
 }) => {
   const {
     values,
@@ -71,7 +72,6 @@ export const Range: React.FC<RangeProps> = ({
           style={{ left: minPct, touchAction: 'none' }}
           aria-label="Selector de valor mínimo"
         />
-
         <button
           onPointerDown={handlePointerDown('max')}
           className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 bg-white border-2 border-black rounded-full transition-transform shadow-sm focus:outline-none ${
@@ -87,6 +87,7 @@ export const Range: React.FC<RangeProps> = ({
             <input
               type="text"
               value={inputMinStr}
+              aria-label='Valor-mínimo'
               onChange={(e) => setInputMinStr(e.target.value)}
               onBlur={handleMinBlur}
               onKeyDown={(e) => e.key === 'Enter' && handleMinBlur()}
@@ -98,7 +99,7 @@ export const Range: React.FC<RangeProps> = ({
               onClick={() => isEditableLabels && setIsEditingMin(true)}
               className={isEditableLabels ? 'cursor-pointer hover:underline border-b border-dashed border-gray-400' : ''}
             >
-              {values.min}
+              {formatLabel? formatLabel(values.min): values.min}
             </span>
           )}
         </div>
@@ -106,6 +107,7 @@ export const Range: React.FC<RangeProps> = ({
           {isEditableLabels && isEditingMax ? (
             <input
               type="text"
+              aria-label='Valor-máximo'
               value={inputMaxStr}
               onChange={(e) => setInputMaxStr(e.target.value)}
               onBlur={handleMaxBlur}
@@ -118,7 +120,7 @@ export const Range: React.FC<RangeProps> = ({
               onClick={() => isEditableLabels && setIsEditingMax(true)}
               className={isEditableLabels ? 'cursor-pointer hover:underline border-b border-dashed border-gray-400' : ''}
             >
-              {values.max}
+              {formatLabel? formatLabel(values.max): values.max}
             </span>
           )}
         </div>
